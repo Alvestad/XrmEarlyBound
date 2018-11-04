@@ -21,14 +21,14 @@ namespace XrmEarlyBound
 
         public List<string> GetActionsList(string connectionstring)
         {
-            var client = Connection.Connection.ServiceByString(connectionstring);
+            var client = Connection.CrmConnection.GetClientByConnectionString(connectionstring);
             var metadata = new Utility.XrmMetaData(client);
             return metadata.GetActions();
         }
 
         public void GenerateActionsMetaDataStruct(string connectionstring, string filepath)
         {
-            var client = Connection.Connection.ServiceByString(connectionstring);
+            var client = Connection.CrmConnection.GetClientByConnectionString(connectionstring);
             var metadata = new Utility.XrmMetaData(client);
             var actions = metadata.GetActions();
 
@@ -52,14 +52,14 @@ namespace XrmEarlyBound
 
         public List<string> GetEntitiesList(string connectionstring)
         {
-            var client = Connection.Connection.ServiceByString(connectionstring);
+            var client = Connection.CrmConnection.GetClientByConnectionString(connectionstring);
             var metadata = new Utility.XrmMetaData(client);
             return metadata.GetEntities();
         }
 
         public void GenerateEntitiesMetaDataStruct(string connectionstring, string filepath)
         {
-            var client = Connection.Connection.ServiceByString(connectionstring);
+            var client = Connection.CrmConnection.GetClientByConnectionString(connectionstring);
             var metadata = new Utility.XrmMetaData(client);
             var entites = metadata.GetEntities();
 
@@ -83,14 +83,14 @@ namespace XrmEarlyBound
 
         public List<string> GetOptionSetList(string connectionstring)
         {
-            var client = Connection.Connection.ServiceByString(connectionstring);
+            var client = Connection.CrmConnection.GetClientByConnectionString(connectionstring);
             var metadata = new Utility.XrmMetaData(client);
             return metadata.GetGlobalOptionSets();
         }
 
         public void GenerateOptionSetMetaDataStruct(string connectionstring, string filepath)
         {
-            var client = Connection.Connection.ServiceByString(connectionstring);
+            var client = Connection.CrmConnection.GetClientByConnectionString(connectionstring);
             var metadata = new Utility.XrmMetaData(client);
             var optionsets = metadata.GetGlobalOptionSets();
 
@@ -125,7 +125,7 @@ namespace XrmEarlyBound
             if (actions != null)
                 actions = actions.Select(x => x.ToLower()).ToList();
 
-            var service = Connection.Connection.ServiceByString(connectionstring);
+            var service = Connection.CrmConnection.GetClientByConnectionString(connectionstring);
             var globalOptionSetDepedencies = new List<XrmEarlyBound.Utility.ListItem>(); //new Dictionary<string, string>();
 
             foreach (var gos in globalOptionSets)
