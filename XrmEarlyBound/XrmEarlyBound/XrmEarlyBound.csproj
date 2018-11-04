@@ -93,6 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="bin\Debug\CrmSvcUtil.exe.config" />
     <None Include="bin\Debug\Debug.zip" />
     <None Include="CrmSvcUtil\CrmSvcUtil.exe.config" />
