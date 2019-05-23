@@ -21,37 +21,9 @@ namespace XrmEarlyBound.Utility
             var Username = GetParameterInStringByName(connectionstring, "username");
             var Password = GetParameterInStringByName(connectionstring, "password");
             var Domain = GetParameterInStringByName(connectionstring, "domain");
-            var Org = GetParameterInStringByName(connectionstring, "Org");
 
-            if (string.IsNullOrWhiteSpace(Domain))
-                interpret.Domain = null;
-            else if (string.Compare(Domain, "null", true) == 0)
-                interpret.Domain = null;
-            else
-                interpret.Domain = Domain;
-
-
-            if (Url.ToLower().EndsWith("organization.svc"))
-            {
-                interpret.Url = Url;
-            }
-            else
-            {
-                var startIndex = Url.IndexOf("//") + 2;
-                var disco = Url.Substring(startIndex, Url.IndexOf(".") - startIndex);
-                if (interpret.Domain == null)
-                {
-                    interpret.Url = ReplaceFirstOccurrance(Url, disco, Org).Replace("Discovery.svc", "Organization.svc");
-                }
-
-                if (interpret.Domain != null)
-                {
-                    interpret.Url = Url.Replace("Discovery.svc", "Organization.svc");
-                    interpret.Url = interpret.Url.Insert(interpret.Url.IndexOf("/", startIndex) + 1, $"{Org}/");
-                }
-            }
-
-            
+            interpret.Url = Url;
+            interpret.Domain = Domain;
             interpret.Password = Password;
             interpret.UserName = Username;
 

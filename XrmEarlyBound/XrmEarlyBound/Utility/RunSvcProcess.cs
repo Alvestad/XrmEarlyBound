@@ -23,7 +23,6 @@ namespace XrmEarlyBound.Utility
             startInfo.RedirectStandardOutput = true;
 
             string arguments = string.Empty;
-            string _url = null;
 
             AddArguments(ref arguments, "url", url);
 
