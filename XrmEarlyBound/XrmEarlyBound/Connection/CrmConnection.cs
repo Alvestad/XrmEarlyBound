@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.ServiceModel.Description;
+using System.Text.RegularExpressions;
 using System.Web;
+using XrmEarlyBound.Utility.Extensions;
 
 namespace XrmEarlyBound.Connection
 {
@@ -18,10 +20,12 @@ namespace XrmEarlyBound.Connection
         //}
         public static IOrganizationService GetClientByConnectionString(string connectionString)
         {
-            var _url = GetParameterInStringByName(connectionString, "url");
-            var _userName = GetParameterInStringByName(connectionString, "username");
-            var _password = GetParameterInStringByName(connectionString, "password");
-            var _domain = GetParameterInStringByName(connectionString, "domain");
+            var connectiontionvalues = Regex.Split(connectionString, @";(?=(?:[^']*'[^']*')*[^']*$)");
+
+            var _url = connectiontionvalues.GetParameter("url"); //GetParameterInStringByName(connectionString, "url");
+            var _userName = connectiontionvalues.GetParameter("username"); //GetParameterInStringByName(connectionString, "username");
+            var _password = connectiontionvalues.GetParameter("password"); //GetParameterInStringByName(connectionString, "password");
+            var _domain = connectiontionvalues.GetParameter("domain"); //GetParameterInStringByName(connectionString, "domain");
 
             var federation = false;
             if ((string.IsNullOrWhiteSpace(_domain) || _domain.ToLower() == "null") && !string.IsNullOrWhiteSpace(_userName) && !string.IsNullOrWhiteSpace(_password))

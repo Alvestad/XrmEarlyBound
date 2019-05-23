@@ -75,5 +75,23 @@ namespace XrmEarlyBound.Utility.Extensions
                    || baseType == "Microsoft.Xrm.Sdk.Client.OrganizationServiceContext";
         }
 
+        public static string RemoveDiacritics(this string text)
+        {
+            byte[] tempBytes;
+            tempBytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(text);
+            string asciiStr = System.Text.Encoding.UTF8.GetString(tempBytes);
+            return asciiStr;
+        }
+
+        public static string GetParameter(this string[] values, string paramenterName)
+        {
+            var value = values.FirstOrDefault(x => x.Trim().StartsWith($"{paramenterName}="))?.Trim().Substring(paramenterName.Length + 1);
+            if (value == null)
+                return null;
+            if (value.StartsWith("'") && value.EndsWith("'"))
+                value = value.Substring(1, value.Length - 2);
+            return value;
+        }
+
     }
 }

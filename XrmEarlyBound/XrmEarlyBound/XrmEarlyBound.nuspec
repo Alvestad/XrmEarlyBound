@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>XrmEarlyBound</id>
-    <version>2.0.0</version>
+    <version>2.0.1-alpha</version>
     <title>XrmEarlyBound</title>
     <authors>Gaute Odin Alvestad</authors>
     <owners>Gaute Odin Alvestad</owners>
@@ -10,7 +10,7 @@
     <licenseUrl>https://github.com/Alvestad/XrmEarlyBound/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Alvestad/XrmEarlyBound</projectUrl>
     <description>Utility to simply create an early-bound file from code</description>
-    <releaseNotes>Update to CRM v9, requieres .net 4.6.2</releaseNotes>
+    <releaseNotes>Update to CRM v9, requieres .net 4.6.2, using diacritics instead of language files</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>CRM</tags>
     <dependencies>
@@ -25,7 +25,7 @@
     <file src="bin\Debug\CrmSvcUtil.exe" target="lib\net462\CrmSvcUtil.exe" />
     <file src="bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.dll" target="lib\net462\Microsoft.Xrm.Tooling.CrmConnectControl.dll" />
     <file src="CrmSvcUtil\CrmSvcUtil.exe.config" target="build\CrmSvcUtil.exe.config" />
-    <file src="LangFiles\*.json" target="content\LangFiles\" />
-    <file src="XrmEarlyBound.targets" target="build\" />
+    <!--<file src="LangFiles\*.json" target="content\LangFiles\" />
+    <file src="XrmEarlyBound.targets" target="build\" />-->
   </files>
 </package>

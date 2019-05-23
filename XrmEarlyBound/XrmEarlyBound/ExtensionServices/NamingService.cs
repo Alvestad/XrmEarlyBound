@@ -19,6 +19,7 @@ using Microsoft.Crm.Services.Utility;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
 using Newtonsoft.Json;
+using XrmEarlyBound.Utility.Extensions;
 
 public sealed class NamingService : INamingService
 {
@@ -77,7 +78,7 @@ public sealed class NamingService : INamingService
             if (localizedLabels != null)
             {
                 if (!string.IsNullOrWhiteSpace(localizedLabels.Label))
-                    value = ReplaceLanguageChar(localizedLabels.Label, localizedLabels.LanguageCode);
+                    value = localizedLabels.Label.RemoveDiacritics(); //ReplaceLanguageChar(localizedLabels.Label, localizedLabels.LanguageCode);
                 else
                     value = defaultName;
             }
