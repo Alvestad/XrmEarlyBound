@@ -85,7 +85,7 @@ namespace XrmEarlyBound.Utility.Extensions
 
         public static string GetParameter(this string[] values, string paramenterName)
         {
-            var value = values.FirstOrDefault(x => x.Trim().StartsWith($"{paramenterName}="))?.Trim().Substring(paramenterName.Length + 1);
+            var value = values.FirstOrDefault(x => x.Trim().StartsWith($"{paramenterName}=", StringComparison.InvariantCultureIgnoreCase))?.Trim().Substring(paramenterName.Length + 1);
             if (value == null)
                 return null;
             if (value.StartsWith("'") && value.EndsWith("'"))
