@@ -30,7 +30,7 @@ namespace XrmEarlyBound.Utility
 
             var result = new List<string>();
 
-            foreach(var r in response.EntityMetadata)
+            foreach (var r in response.EntityMetadata)
             {
                 result.Add(r.LogicalName);
             }
@@ -66,11 +66,12 @@ namespace XrmEarlyBound.Utility
 
             var actions = (from w in context.CreateQuery("workflow")
                            where ((OptionSetValue)w["category"]).Value == 3
-                           select new {
+                           select new
+                           {
                                Name = (string)w["uniquename"],
                            }).Distinct().ToList();
 
-           foreach(var a in actions)
+            foreach (var a in actions)
             {
                 result.Add(a.Name);
             }

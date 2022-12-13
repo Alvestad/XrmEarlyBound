@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Script.Serialization;
+
 
 namespace XrmEarlyBound.Utility.Extensions
 {
@@ -39,7 +39,7 @@ namespace XrmEarlyBound.Utility.Extensions
 
         public static string ToJson(this object value)
         {
-            var json = new JavaScriptSerializer().Serialize(value);
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(value);
             return json;
         }
 
@@ -58,8 +58,6 @@ namespace XrmEarlyBound.Utility.Extensions
             }
 
             return null;
-
-            //throw new Exception("Field " + fieldName + " was not found for type " + type.Name);
         }
 
         //Labar

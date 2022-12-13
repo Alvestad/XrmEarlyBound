@@ -139,7 +139,7 @@ namespace XrmEarlyBound
 
                 var result = (RetrieveDependentComponentsResponse)service.Execute(dependencyRequest);
 
-                foreach(var dep in result.EntityCollection.Entities)
+                foreach (var dep in result.EntityCollection.Entities)
                 {
                     var dependentcomponentobjectid = (Guid)dep.Attributes["dependentcomponentobjectid"];
                     var _result = (RetrieveAttributeResponse)service.Execute(new RetrieveAttributeRequest { MetadataId = dependentcomponentobjectid });
@@ -169,7 +169,9 @@ namespace XrmEarlyBound
 
             var outpath = GetPath(filepath);
 
-            Utility.RunSvcProcess.Run(intepret.Url, intepret.UserName, intepret.Domain, intepret.Password, @namespace, filepath, hasActions, servicecontextname, ShowMessage);
+           
+
+            Utility.RunSvcProcess.Run(intepret.Url, intepret.UserName, intepret.Domain, intepret.Password, intepret.AuthType, @namespace, filepath, hasActions, servicecontextname, ShowMessage);
 
             config.Delete();
         }

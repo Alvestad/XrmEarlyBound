@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
+
 namespace XrmEarlyBound.Utility
 {
     public class RunSvcProcess
     {
-        public static void Run(string url, string username, string domain, string password, string ns, string filepath, bool actions, string servicecontextname,  Delegate @delegate)
+        public static void Run(string url, string username, string domain, string password, string authtype, string ns, string filepath, bool actions, string servicecontextname, Delegate @delegate)
         {
             string filePath = new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath;
             string exePath = string.Format("{0}\\CrmSvcUtil.exe", System.IO.Path.GetDirectoryName(filePath));
@@ -24,12 +25,28 @@ namespace XrmEarlyBound.Utility
 
             string arguments = string.Empty;
 
+            //var connectionstring = $"AuthType=ClientSecret;ClientId={__userName};ClientSecret={__password};url={__url}";
+
             AddArguments(ref arguments, "url", url);
 
-            AddArguments(ref arguments, "username", username);
-            AddArguments(ref arguments, "password", password);
-            if (domain != null)
-                AddArguments(ref arguments, "domain", domain);
+            if (!string.IsNullOrEmpty(authtype))
+            {
+                AddArguments(ref arguments, "authtype", authtype);
+                AddArguments(ref arguments, "clientid", username);
+                if (authtype.ToLowerInvariant() == "clientsecret")
+                    AddArguments(ref arguments, "clientsecret", password);
+                else if(authtype.ToLowerInvariant() == "certificate")
+                    AddArguments(ref arguments, "thumbprint", password);
+                else
+                    throw new Exception("Only ClientSecret or Certificate is supported if AuthType is used");
+            }
+            else
+            {
+                AddArguments(ref arguments, "username", username);
+                AddArguments(ref arguments, "password", password);
+                if (domain != null)
+                    AddArguments(ref arguments, "domain", domain);
+            }
 
             AddArguments(ref arguments, "namespace", ns);
             AddArguments(ref arguments, "out", string.Format("{0}{1}{0}", '"', filepath));
@@ -78,6 +95,11 @@ namespace XrmEarlyBound.Utility
         private static void AddArguments(ref string value, string par, string val)
         {
             value += @"/" + par + ":" + val + " ";
+        }
+
+        private void ForceMissingAssembly()
+        {
+            var obj = System.Text.Json.JsonValueKind.Object;
         }
     }
 }

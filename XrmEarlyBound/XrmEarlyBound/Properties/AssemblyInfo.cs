@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("XrmEarlyBound")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Den norske legeforening")]
 [assembly: AssemblyProduct("XrmEarlyBound")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Copyright © Den norske legeforening 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,9 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("438DEAB6-7FB4-47B9-AD42-A4687DCE7041")]
-
-
+[assembly: Guid("8d702114-fcaf-4c6f-b609-4947f6cc6a0e")]
 
 // Version information for an assembly consists of the following four values:
 //

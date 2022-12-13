@@ -13,11 +13,6 @@ namespace XrmEarlyBound.Connection
 {
     public static class CrmConnection
     {
-        //public static IOrganizationService GetClientByConnectionStringName(string connectionStringName)
-        //{
-        //    var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
-        //    return GetClientByConnectionString(connectionString);
-        //}
         public static IOrganizationService GetClientByConnectionString(string connectionString)
         {
             var connectiontionvalues = Regex.Split(connectionString, @";(?=(?:[^']*'[^']*')*[^']*$)");
@@ -26,6 +21,7 @@ namespace XrmEarlyBound.Connection
             var _userName = connectiontionvalues.GetParameter("username"); //GetParameterInStringByName(connectionString, "username");
             var _password = connectiontionvalues.GetParameter("password"); //GetParameterInStringByName(connectionString, "password");
             var _domain = connectiontionvalues.GetParameter("domain"); //GetParameterInStringByName(connectionString, "domain");
+            var _authtype = connectiontionvalues.GetParameter("authtype");
 
             var federation = false;
             if ((string.IsNullOrWhiteSpace(_domain) || _domain.ToLower() == "null") && !string.IsNullOrWhiteSpace(_userName) && !string.IsNullOrWhiteSpace(_password))
@@ -37,6 +33,20 @@ namespace XrmEarlyBound.Connection
             var clientCredentials = new ClientCredentials();
             if (federation)
             {
+                if(!string.IsNullOrEmpty(_authtype))
+                {
+                    var connectionstring = "";
+                    if (_authtype.ToLowerInvariant() == "clientsecret")
+                        connectionstring = $"AuthType=ClientSecret;ClientId={_userName};ClientSecret={_password};url={_url}";
+                    else if (_authtype.ToLowerInvariant() == "certificate")
+                        connectionString = $"AuthType=Certificate;ClientId={_userName};thumbprint={_password};url={_url}";
+                    else
+                        throw new Exception("Only ClientSecret or Certificate is supported if AuthType is used");
+
+                    var crmclient = new Microsoft.Xrm.Tooling.Connector.CrmServiceClient(connectionstring);
+                    return crmclient;
+                }
+
                 clientCredentials.UserName.UserName = _userName;
                 clientCredentials.UserName.Password = _password;
             }

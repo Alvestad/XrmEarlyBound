@@ -1,8 +1,8 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <package >
   <metadata>
     <id>XrmEarlyBound</id>
-    <version>2.0.2</version>
+    <version>3.0.1</version>
     <title>XrmEarlyBound</title>
     <authors>Gaute Odin Alvestad</authors>
     <owners>Gaute Odin Alvestad</owners>
@@ -10,14 +10,11 @@
     <licenseUrl>https://github.com/Alvestad/XrmEarlyBound/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Alvestad/XrmEarlyBound</projectUrl>
     <description>Utility to simply create an early-bound file from code</description>
-    <releaseNotes>Update to CRM v9, requieres .net 4.6.2, using diacritics instead of language files</releaseNotes>
-    <copyright>Copyright 2018</copyright>
+    <releaseNotes>Update to CRM v9, update to support clientsecret and certificate authtype</releaseNotes>
+    <copyright>Copyright 2022</copyright>
     <tags>CRM</tags>
     <dependencies>
-      <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="9.0.2.5" />
-      <dependency id="Microsoft.IdentityModel" version="6.1.7600.16394" />
-      <dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.0.2.7" />
-      <dependency id="Newtonsoft.Json" version="11.0.2" />
+      <dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.1" />
     </dependencies>
   </metadata>
   <files>
@@ -25,7 +22,6 @@
     <file src="bin\Debug\CrmSvcUtil.exe" target="lib\net462\CrmSvcUtil.exe" />
     <file src="bin\Debug\Microsoft.Xrm.Tooling.CrmConnectControl.dll" target="lib\net462\Microsoft.Xrm.Tooling.CrmConnectControl.dll" />
     <file src="CrmSvcUtil\CrmSvcUtil.exe.config" target="build\CrmSvcUtil.exe.config" />
-    <!--<file src="LangFiles\*.json" target="content\LangFiles\" />-->
-    <file src="XrmEarlyBound.targets" target="build\" />
+	<file src="XrmEarlyBound.targets" target="build\" />
   </files>
 </package>

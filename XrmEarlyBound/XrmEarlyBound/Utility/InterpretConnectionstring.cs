@@ -12,6 +12,7 @@ namespace XrmEarlyBound.Utility
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Domain { get; set; }
+        public string AuthType { get; set; }
 
         public static InterpretConnectionstring Interpret(string connectionstring)
         {
@@ -21,11 +22,14 @@ namespace XrmEarlyBound.Utility
             var Username = GetParameterInStringByName(connectionstring, "username");
             var Password = GetParameterInStringByName(connectionstring, "password");
             var Domain = GetParameterInStringByName(connectionstring, "domain");
+            var AuthType = GetParameterInStringByName(connectionstring, "authtype");
+
 
             interpret.Url = Url;
             interpret.Domain = Domain;
             interpret.Password = Password;
             interpret.UserName = Username;
+            interpret.AuthType = AuthType;
 
             return interpret;
         }
