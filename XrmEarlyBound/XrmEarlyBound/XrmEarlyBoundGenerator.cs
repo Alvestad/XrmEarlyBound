@@ -166,6 +166,7 @@ namespace XrmEarlyBound
             config.Save();
 
             var hasActions = actions != null ? actions.Count > 0 : false;
+            var hasGlobalOptionsSets = globalOptionSets != null ? globalOptionSets.Count > 0 : false;
 
             var outpath = GetPath(filepath);
 
