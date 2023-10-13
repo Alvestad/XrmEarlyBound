@@ -10,7 +10,7 @@ namespace XrmEarlyBound.Utility
 {
     public class RunSvcProcess
     {
-        public static void Run(string url, string username, string domain, string password, string authtype, string ns, string filepath, bool actions, string servicecontextname, Delegate @delegate)
+        public static void Run(string url, string username, string domain, string password, string authtype, string ns, string filepath, bool actions, bool globaloptionsets, string servicecontextname, Delegate @delegate)
         {
             string filePath = new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath;
             string exePath = string.Format("{0}\\CrmSvcUtil.exe", System.IO.Path.GetDirectoryName(filePath));
@@ -58,6 +58,10 @@ namespace XrmEarlyBound.Utility
             if (actions)
             {
                 AddArguments(ref arguments, "generateActions");
+            }
+            if(globaloptionsets)
+            {
+                AddArguments(ref arguments, "generateGlobalOptionSets");
             }
 
             startInfo.Arguments = arguments.Trim();
