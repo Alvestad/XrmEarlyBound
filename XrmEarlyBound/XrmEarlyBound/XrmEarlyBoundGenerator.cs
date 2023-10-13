@@ -172,7 +172,7 @@ namespace XrmEarlyBound
 
            
 
-            Utility.RunSvcProcess.Run(intepret.Url, intepret.UserName, intepret.Domain, intepret.Password, intepret.AuthType, @namespace, filepath, hasActions, servicecontextname, ShowMessage);
+            Utility.RunSvcProcess.Run(intepret.Url, intepret.UserName, intepret.Domain, intepret.Password, intepret.AuthType, @namespace, filepath, hasActions, hasGlobalOptionsSets, servicecontextname, ShowMessage);
 
             config.Delete();
         }
