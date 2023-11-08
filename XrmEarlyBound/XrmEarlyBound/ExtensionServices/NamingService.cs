@@ -164,8 +164,16 @@ public sealed class NamingService : INamingService
     public string GetNameForOption(OptionSetMetadataBase optionSetMetadata,
         OptionMetadata optionMetadata, IServiceProvider services)
     {
-        var name = DefaultNamingService.GetNameForOption(optionSetMetadata,
-            optionMetadata, services);
+
+        var name = optionMetadata.Label.GetLocalOrDefaultText();
+
+        if (string.IsNullOrWhiteSpace(name))
+            name = DefaultNamingService.GetNameForOption(optionSetMetadata, optionMetadata, services);
+
+        name = name.RemoveDiacritics();
+
+        //var name = DefaultNamingService.GetNameForOption(optionSetMetadata,
+        //    optionMetadata, services);
 
         name = FindLableIfNotEnglish(optionMetadata, name);
 
