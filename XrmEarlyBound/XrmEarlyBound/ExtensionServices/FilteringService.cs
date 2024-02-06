@@ -41,6 +41,9 @@ public sealed class FilteringService : ICodeWriterFilterService
 
     bool ICodeWriterFilterService.GenerateAttribute(AttributeMetadata attributeMetadata, IServiceProvider services)
     {
+        if (attributeMetadata.LogicalName.ToLowerInvariant() == "componentstate")
+            return false;
+
         return this.DefaultService.GenerateAttribute(attributeMetadata, services);
     }
 
@@ -60,6 +63,9 @@ public sealed class FilteringService : ICodeWriterFilterService
 
     bool ICodeWriterFilterService.GenerateOptionSet(OptionSetMetadataBase optionSetMetadata, IServiceProvider services)
     {
+        if (optionSetMetadata.Name.ToLowerInvariant() == "componentstate")
+            return false;
+
         if (optionSetMetadata.IsGlobal.HasValue && optionSetMetadata.IsGlobal.Value)
         {
             if (!GeneratedOptionSets.ContainsKey(optionSetMetadata.Name))

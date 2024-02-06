@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>XrmEarlyBound</id>
-    <version>3.0.5</version>
+    <version>3.0.6</version>
     <title>XrmEarlyBound</title>
     <authors>Gaute Odin Alvestad</authors>
     <owners>Gaute Odin Alvestad</owners>
@@ -10,7 +10,7 @@
     <licenseUrl>https://github.com/Alvestad/XrmEarlyBound/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Alvestad/XrmEarlyBound</projectUrl>
     <description>Utility to simply create an early-bound file from code</description>
-    <releaseNotes>Update to CRM v9, update to support clientsecret and certificate authtype, bug fix</releaseNotes>
+    <releaseNotes>Remove componentstate attribute from entity generation</releaseNotes>
     <copyright>Copyright 2022</copyright>
     <tags>CRM</tags>
     <dependencies>
