@@ -99,7 +99,7 @@ namespace XrmEarlyBound.ExtensionServices
 
         private bool SkipProperty(CodeMemberProperty property, CodeTypeDeclaration type)
         {
-            return property == null || type == null || IsComponentState(property) ||
+            return property == null || type == null ||
                    !IsOptionSetProperty(property);
         }
 
@@ -108,10 +108,10 @@ namespace XrmEarlyBound.ExtensionServices
             return property.Type.BaseType == "Microsoft.Xrm.Sdk.OptionSetValue";
         }
 
-        private static bool IsComponentState(CodeMemberProperty property)
-        {
-            return property.Name.ToLowerInvariant() == "componentstate";
-        }
+        //private static bool IsComponentState(CodeMemberProperty property)
+        //{
+        //    return property.Name.ToLowerInvariant() == "componentstate";
+        //}
 
     }
 }

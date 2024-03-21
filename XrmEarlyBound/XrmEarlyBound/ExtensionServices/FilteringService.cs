@@ -2,7 +2,6 @@
 using Microsoft.Crm.Services.Utility;
 using Microsoft.Xrm.Sdk.Metadata;
 using System.Collections.Generic;
-using XrmEarlyBound.ExtensionServices;
 
 public sealed class FilteringService : ICodeWriterFilterService
 {
@@ -12,8 +11,9 @@ public sealed class FilteringService : ICodeWriterFilterService
 
     private string currentEntity = null;
 
-    private XrmEarlyBound.Utility.Config config = null;
+    private bool isActivityparty = false;
 
+    private XrmEarlyBound.Utility.Config config = null;
 
     bool GenereateForEntity(string entityLogicalName)
     {
@@ -49,7 +49,12 @@ public sealed class FilteringService : ICodeWriterFilterService
 
     bool ICodeWriterFilterService.GenerateEntity(EntityMetadata entityMetadata, IServiceProvider services)
     {
-        if (!GenereateForEntity(entityMetadata.LogicalName)) { currentEntity = null; return false; }
+        if (entityMetadata.LogicalName == "activityparty")
+            isActivityparty = true;
+        else
+            isActivityparty = false;
+
+        if (!GenereateForEntity(entityMetadata.LogicalName.ToLowerInvariant())) { currentEntity = null; return false; }
 
         currentEntity = entityMetadata.LogicalName;
 
@@ -63,6 +68,12 @@ public sealed class FilteringService : ICodeWriterFilterService
 
     bool ICodeWriterFilterService.GenerateOptionSet(OptionSetMetadataBase optionSetMetadata, IServiceProvider services)
     {
+        //Debugging
+        //using (StreamWriter outputFile = new StreamWriter("c:\\Test\\WriteLines.txt", true))
+        //{
+        //    outputFile.WriteLine(optionSetMetadata.Name + " " + otherCurrentEntity);
+        //}
+
         if (optionSetMetadata.Name.ToLowerInvariant() == "componentstate")
             return false;
 
@@ -80,7 +91,7 @@ public sealed class FilteringService : ICodeWriterFilterService
         }
         else
         {
-            if (currentEntity == null)
+            if (currentEntity == null && !isActivityparty)
                 return false;
 
             return true;

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>XrmEarlyBound</id>
-    <version>3.0.6</version>
+    <version>3.0.7</version>
     <title>XrmEarlyBound</title>
     <authors>Gaute Odin Alvestad</authors>
     <owners>Gaute Odin Alvestad</owners>
@@ -10,8 +10,8 @@
     <licenseUrl>https://github.com/Alvestad/XrmEarlyBound/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Alvestad/XrmEarlyBound</projectUrl>
     <description>Utility to simply create an early-bound file from code</description>
-    <releaseNotes>Remove componentstate attribute from entity generation</releaseNotes>
-    <copyright>Copyright 2022</copyright>
+    <releaseNotes>Fix for activityparty enums not generatiing</releaseNotes>
+    <copyright>Copyright 2024</copyright>
     <tags>CRM</tags>
     <dependencies>
       <dependency id="Microsoft.CrmSdk.XrmTooling.CoreAssembly" version="9.1.1.1" />
